@@ -1,6 +1,6 @@
 #include "stu_login.h"
 #include "ui_stu_login.h"
-
+#include <QMessageBox>
 stu_login::stu_login(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::stu_login)
@@ -15,10 +15,27 @@ stu_login::~stu_login()
 
 void stu_login::on_btlogin_clicked()
 {
-    //数据库查找
+    QString name =ui->username->text();
+    QString password =ui->passwd->text();
+    if (password.length()<6){
+        QMessageBox::about(this,"错误","密码少于6位");
 
-    emit sendLoginSuccess();
-    this->hide();
+    }
+    else{
+        if (name=="admin"&&password=="123456")
+        {
+            qDebug()<<"登陆成功";                                     //管理员界面
+            emit sendLoginSuccess();
+            this->hide();
+        }
+        else
+        {
+            QMessageBox::about(this,"错误","用户名或密码错误");
+        }
+
+    }
+
+
 }
 
 
