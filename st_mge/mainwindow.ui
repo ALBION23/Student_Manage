@@ -114,7 +114,7 @@ background-color: rgb(79, 79, 79);</string>
       </property>
       <widget class="QWidget" name="page"/>
       <widget class="QWidget" name="page_2">
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="searchEdit">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -238,7 +238,7 @@ background-color: rgb(117, 117, 117);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

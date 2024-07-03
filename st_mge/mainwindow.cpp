@@ -4,6 +4,7 @@
 #include "student.h"
 #include <map>
 #include <QString>
+#include <QStringList>
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
@@ -11,12 +12,15 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QStandardItemModel>
+#include <QTableWidget>
+#include <QTableView>
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     m_dlgLogin.show();
     auto f = [&](){
         this->show();
@@ -27,14 +31,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&m_dlgLogin,&stu_login::sendLoginSuccess,this,f);
     connect(&add_st,&add::add_over,this,m);
 
-    this->modle =new QStandardItemModel;
-    modle->setHorizontalHeaderItem(0,new QStandardItem("姓名"));
-    modle->setHorizontalHeaderItem(1,new QStandardItem("学号"));
-    modle->setHorizontalHeaderItem(2,new QStandardItem("性别"));
-    modle->setHorizontalHeaderItem(3,new QStandardItem("年龄"));        //模板设置
-    modle->setHorizontalHeaderItem(4,new QStandardItem("专业"));
-    modle->setHorizontalHeaderItem(5,new QStandardItem("班级"));
-    ui->tableView->setModel(modle);  //引用模板
+    modle =new QStandardItemModel;
+    ui->tableView->setModel(modle);
+
+
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->tableView->verticalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->tableView->setSortingEnabled(true); //排序功能
     this->on_flash_clicked();
 
 }
@@ -46,7 +51,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_smExit_clicked()
 {
-  //  emit user_exit();
     m_dlgLogin.show();
     this->hide();
 }
@@ -60,7 +64,27 @@ void MainWindow::on_addStudent_clicked()
 
 void MainWindow::on_deleteStudent_clicked()
 {
+    // 获取选中的模型索引
+    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
+    QModelIndexList selectedRows = selectionModel->selectedRows();
 
+    // 如果没有选中行，不进行操作
+    if (selectedRows.isEmpty()) {
+        QMessageBox::about(this,"错误","请选中相应行");
+        return;
+    }
+
+    int rowToDelete = selectedRows.first().row();
+
+    // 删除选中的行
+    QModelIndex index = modle->index(rowToDelete, 1);
+    QVariant data = modle->data(index);
+    QString rowData = data.toString();
+    int pos = hash[rowData];
+    ls.takeAt(pos);
+    hash[rowData] = 0;
+    modle->removeRow(rowToDelete);
+    Save_Data();
 }
 
 
@@ -76,7 +100,7 @@ void MainWindow::on_flash_clicked()
     }
     QTextStream in(&file);
     qDebug()<<"file open success!\n";
-    int pos = 0;
+    int pos = -1;
     while (!in.atEnd())
     {
         student step(NULL,NULL,NULL,NULL,NULL,NULL);
@@ -89,18 +113,72 @@ void MainWindow::on_flash_clicked()
     }
     file.close();
     modle->clear();
-    for(int i = 1;i<=pos;i++){
+    for(int i = 0;i<ls.size();i++){
         for(int j = 0;j<6;j++)
-            modle->setItem(i-1,j,new QStandardItem(ls[i-1].list().at(j)));
+            modle->setItem(i,j,new QStandardItem(ls[i].list().at(j)));
     }
 }
-/*void MainWindow::enquire_1(int row, QStringList sub)
+
+void MainWindow::on_search_clicked()
 {
 
-    int i=0;
-    for (i=0;i<sub.length();i++)
+    QString  str = ui->searchEdit->text();
+    if(str.isEmpty()){
+        QMessageBox::about(this,"错误","请在搜索框内输入内容");
+    }
+    else{
+        modle->clear();
+        int pos = 0;
+        for(int i = 0;i<ls.size();i++){
+            if(ls[i].list()[0].indexOf(str)!=-1 ||ls[i].list()[1].indexOf(str)!=-1 ){
+                for(int j = 0;j<6;j++)
+                    modle->setItem(pos,j,new QStandardItem(ls[i].list().at(j)));
+                pos++;
+            }
+        }
+
+        if(!pos){
+            QMessageBox::about(this,"错误","搜索结果为空");
+        }
+    }
+
+}
+void MainWindow::Save_Data()
+{
+//    ls_flash();
+    QFile file ("a.txt");
+    if (!file.open(QIODevice::WriteOnly|QIODevice::Text))   //文件打开不成功
     {
-        modle->setItem(row,i,new QStandardItem(sub.at(i)));
+        qDebug()<<"file open failure!\n";
+        return ;
+    }
+    QTextStream out(&file);
+    qDebug()<<"file open success!\n";
+
+    for(int i = 0;i<ls.size();i++){
+        out << ls[i];
+    }
+
+    file.close();
+}
+
+void MainWindow::ls_flash()
+{
+    ls.clear();
+    hash.clear();
+    int rows = modle->rowCount();
+    int cols = modle->columnCount();
+    for (int row = 0; row < rows; ++row) {
+        QStringList rs;
+
+        for (int col = 0; col < cols; ++col) {
+            QModelIndex index = modle->index(row, col);
+            QVariant data = modle->data(index);
+            rs.append(data.toString());
+        }
+
+        student st(rs[0],rs[1],rs[2],rs[3],rs[4],rs[5]);
+        ls.append(st);
+        hash[rs[1]] = 1;
     }
 }
-*/

@@ -14,6 +14,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QStandardItemModel>
+#include <QTableView>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -27,14 +28,20 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void Save_Data();
+//    void ls_flash();
 
 private slots:
     void on_smExit_clicked();
+
     void on_addStudent_clicked();
 
     void on_deleteStudent_clicked();
 
     void on_flash_clicked();
+
+    void on_search_clicked();
+
 
 private:
     Ui::MainWindow *ui;
@@ -43,6 +50,6 @@ private:
     QList<student> ls;
     std::map<QString,int> hash;
     QStandardItemModel *modle;
- //   void enquire_1(int row,QStringList sub);
+
 };
 #endif // MAINWINDOW_H

@@ -173,7 +173,7 @@
       </font>
      </property>
      <property name="text">
-      <string>学生用户系统管理登录</string>
+      <string>学生信息管理系统登录</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

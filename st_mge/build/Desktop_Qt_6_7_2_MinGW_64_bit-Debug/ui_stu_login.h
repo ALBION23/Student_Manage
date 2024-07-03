@@ -124,7 +124,7 @@ public:
         passwd->setPlaceholderText(QCoreApplication::translate("stu_login", "\350\257\267\350\276\223\345\205\245\345\257\206\347\240\201", nullptr));
         btexit->setText(QCoreApplication::translate("stu_login", "\351\200\200\345\207\272", nullptr));
         btlogin->setText(QCoreApplication::translate("stu_login", "\347\231\273\345\275\225", nullptr));
-        label_3->setText(QCoreApplication::translate("stu_login", "\345\255\246\347\224\237\347\224\250\346\210\267\347\263\273\347\273\237\347\256\241\347\220\206\347\231\273\345\275\225", nullptr));
+        label_3->setText(QCoreApplication::translate("stu_login", "\345\255\246\347\224\237\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\347\231\273\345\275\225", nullptr));
     } // retranslateUi
 
 };

@@ -40,7 +40,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *page;
     QWidget *page_2;
-    QLineEdit *lineEdit;
+    QLineEdit *searchEdit;
     QPushButton *search;
     QPushButton *addStudent;
     QPushButton *changeStudent;
@@ -114,10 +114,10 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
-        lineEdit = new QLineEdit(page_2);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(50, -1, 231, 41));
-        lineEdit->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 109, 109);"));
+        searchEdit = new QLineEdit(page_2);
+        searchEdit->setObjectName("searchEdit");
+        searchEdit->setGeometry(QRect(50, -1, 231, 41));
+        searchEdit->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 109, 109);"));
         search = new QPushButton(page_2);
         search->setObjectName("search");
         search->setGeometry(QRect(300, 0, 91, 41));
@@ -152,7 +152,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1000, 21));
+        menubar->setGeometry(QRect(0, 0, 1000, 17));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
