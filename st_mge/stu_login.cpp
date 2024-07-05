@@ -24,7 +24,7 @@ void stu_login::on_btlogin_clicked()
     else{
         if (name=="admin"&&password=="123456")
         {
-            qDebug()<<"登陆成功";                                     //管理员界面
+            qDebug()<<"登陆成功";
             emit sendLoginSuccess();
             this->hide();
         }

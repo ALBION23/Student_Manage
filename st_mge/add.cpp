@@ -1,4 +1,3 @@
-//#pragma execution_character_set("utf-8")
 #include "add.h"
 #include "ui_add.h"
 #include "student.h"
@@ -14,14 +13,13 @@ add::add(QWidget *parent) :
     ui(new Ui::add)
 {
     ui->setupUi(this);
-//    connect(&add_st,&MainWindow::add_over,this,MainWindow::on_flash_clicked());
 }
 
 add::~add()
 {
     delete ui;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 void add::on_pushButton_clicked()
 {
     QString number;
@@ -30,7 +28,6 @@ void add::on_pushButton_clicked()
     QString age;
     QString pro;
     QString class_2;
-//    QString total;
     name =ui->name->text();
     number =ui->number->text();
     age =ui->age->text();
@@ -40,7 +37,7 @@ void add::on_pushButton_clicked()
     student st(name,number,sex,age,pro,class_2);
     if(st.check()){
         addDATA(st);
-        this ->hide();
+        this->hide();
         emit add_over();
     }
     else{
@@ -48,18 +45,23 @@ void add::on_pushButton_clicked()
     }
 
 }
-////////////////////////////////////////////////////////////////////////////////////////
+
 void add::addDATA(student& st)
 {
     QFile file ("a.txt");
     if (!file.open(QIODevice::Append|QIODevice::Text))   //文件打开不成功
     {
-        qDebug()<<"file open failure!\n";
+        qDebug()<<"file open failure!";
         return ;
     }
     QTextStream out(&file);
-    qDebug()<<"file open success!\n";
+    // qDebug()<<"file open success!";
     out<<st;
     file.close(); 
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
+void add::on_pushButton_2_clicked()
+{
+    emit add_hundred();
+}
+

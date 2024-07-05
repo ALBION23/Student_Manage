@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
-        <file>C:/Users/阿尔比恩/Pictures/285px-尼托克丽丝〔Alter〕满破.png</file>
+    <qresource prefix="/">
+        <file>build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/114287760_p0.png</file>
+        <file>build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png</file>
     </qresource>
 </RCC>

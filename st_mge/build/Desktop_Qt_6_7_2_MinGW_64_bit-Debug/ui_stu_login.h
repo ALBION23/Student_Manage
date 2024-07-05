@@ -43,7 +43,7 @@ public:
         stu_login->setMinimumSize(QSize(432, 240));
         stu_login->setMaximumSize(QSize(432, 240));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/picture/icon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon.addFile(QString::fromUtf8(":/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         stu_login->setWindowIcon(icon);
         gridLayout = new QGridLayout(stu_login);
         gridLayout->setObjectName("gridLayout");

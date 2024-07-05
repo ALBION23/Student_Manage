@@ -10,6 +10,7 @@
 #define UI_ADD_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
@@ -39,12 +40,16 @@ public:
     QLabel *label;
     QRadioButton *gril;
     QLineEdit *name;
+    QPushButton *pushButton_2;
 
     void setupUi(QWidget *add)
     {
         if (add->objectName().isEmpty())
             add->setObjectName("add");
         add->resize(590, 463);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        add->setWindowIcon(icon);
         widget = new QWidget(add);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(110, 30, 371, 371));
@@ -137,6 +142,11 @@ public:
 
         gridLayout->addWidget(name, 0, 2, 1, 3);
 
+        pushButton_2 = new QPushButton(widget);
+        pushButton_2->setObjectName("pushButton_2");
+
+        gridLayout->addWidget(pushButton_2, 6, 0, 1, 1);
+
 
         retranslateUi(add);
 
@@ -166,6 +176,7 @@ public:
         name->setInputMask(QString());
         name->setText(QString());
         name->setPlaceholderText(QCoreApplication::translate("add", "(\345\277\205\345\241\253)", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("add", "\351\232\217\346\234\272\347\224\237\346\210\220100\344\270\252", nullptr));
     } // retranslateUi
 
 };

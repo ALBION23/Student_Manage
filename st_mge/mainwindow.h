@@ -5,7 +5,6 @@
 #include "stu_login.h"
 #include "add.h"
 #include "student.h"
-#include <map>
 #include <QString>
 #include <QDebug>
 #include <QFile>
@@ -15,6 +14,11 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <QTableView>
+#include <QStack>
+
+typedef std::pair<int,int> PII;
+typedef std::pair<student,PII> PSI;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -29,7 +33,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void Save_Data();
-//    void ls_flash();
+    void ls_flash();
 
 private slots:
     void on_smExit_clicked();
@@ -42,13 +46,17 @@ private slots:
 
     void on_search_clicked();
 
+    void on_returnsituation_clicked();
+
+    void on_changemessage_clicked();
 
 private:
     Ui::MainWindow *ui;
     stu_login m_dlgLogin;
     add add_st;
     QList<student> ls;
-    std::map<QString,int> hash;
+    QStack<PSI> stack_stu;
+    QHash<QString,int> hash;
     QStandardItemModel *modle;
 
 };

@@ -426,7 +426,7 @@ Makefile: ../../st_mge.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmake
 		../../../../QT/6.7.2/mingw_64/lib/Qt6Core.prl \
 		../../../../QT/6.7.2/mingw_64/lib/Qt6EntryPoint.prl \
 		../../../../QT/6.7.2/mingw_64/mkspecs/features/build_pass.prf \
-		../../res2.qrc
+		../../res.qrc
 	$(QMAKE) -o Makefile ..\..\st_mge.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/spec_pre.prf:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/device_config.prf:
@@ -784,7 +784,7 @@ Makefile: ../../st_mge.pro ../../../../QT/6.7.2/mingw_64/mkspecs/win32-g++/qmake
 ../../../../QT/6.7.2/mingw_64/lib/Qt6Core.prl:
 ../../../../QT/6.7.2/mingw_64/lib/Qt6EntryPoint.prl:
 ../../../../QT/6.7.2/mingw_64/mkspecs/features/build_pass.prf:
-../../res2.qrc:
+../../res.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\st_mge.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

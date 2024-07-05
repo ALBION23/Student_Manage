@@ -1,12 +1,34 @@
 #include "student.h"
 #include <QString>
 #include <QTextStream>
-#include <QList>
-student::student(QString name, QString studentID, QString gender, QString age="NULL", QString major="NULL", QString className="NULL")
+#include <QStringList>
+student::student(){};
+student::student(QString studentID){
+    name = id = studentID;
+    sex = age = spe = cs = "NULL";
+}
+student::student(QString name, QString studentID, QString gender, QString age, QString major, QString className)
     : name(name), id(studentID), sex(gender), age(age), spe(major), cs(className) {
 };
+student::student(const student& st){
+    name = st.name;
+    id = st.id;
+    sex = st.sex;
+    age = st.age;
+    spe = st.spe;
+    cs = st.cs;
+}
+student student::operator= (const student& st){
+    name = st.name;
+    id = st.id;
+    sex = st.sex;
+    age = st.age;
+    spe = st.spe;
+    cs = st.cs;
+    return *this;
+}
 
-QTextStream& operator<<(QTextStream& out, const student& st) {
+QTextStream& operator<<(QTextStream& out, const student& st){
     QString total =st.name +" "+ st.id + " " + st.sex + " " + st.age+ " " +  st.spe+" "+st.cs+'\n';
     out << total;
     return out;
@@ -23,16 +45,10 @@ QTextStream& operator>>(QTextStream& in, student& st) {
         st.sex = tokens.at(2);
     if (tokens.size() > 3)
         st.age = tokens.at(3);
-    else
-        st.age ="NULL";
     if (tokens.size() > 4)
         st.spe = tokens.at(4);
-    else
-        st.spe = "NULL";
     if(tokens.size() > 5)
         st.cs = tokens.at(5);
-    else
-        st.cs = "NULL";
 
     return in;
 }
@@ -45,7 +61,7 @@ bool student::check(){
             return false;
     }
     for(QChar st : age){
-        if(age == "NULL")
+        if(age.isEmpty()||age=="NULL")
             break;
         if(!st.isDigit())
             return false;
