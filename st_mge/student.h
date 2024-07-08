@@ -15,7 +15,7 @@ private:
 
 public:
     student();
-    student(QString studentID);
+    student(QString studnetID,QString name);
     student(QString name, QString studentID, QString gender, QString age, QString major, QString className);
     student(const student& st);
     student operator= (const student & st);

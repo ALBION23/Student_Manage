@@ -1,10 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
 #include "stu_login.h"
 #include "add.h"
 #include "student.h"
+#include "change_stu.h"
+
 #include <QString>
 #include <QDebug>
 #include <QFile>
@@ -34,7 +35,6 @@ public:
     ~MainWindow();
     void Save_Data();
     void ls_flash();
-
 private slots:
     void on_smExit_clicked();
 
@@ -54,6 +54,7 @@ private:
     Ui::MainWindow *ui;
     stu_login m_dlgLogin;
     add add_st;
+    change_stu cg_st;
     QList<student> ls;
     QStack<PSI> stack_stu;
     QHash<QString,int> hash;

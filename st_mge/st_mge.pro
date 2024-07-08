@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     add.cpp \
+    change_stu.cpp \
     main.cpp \
     mainwindow.cpp \
     stu_login.cpp \
@@ -17,12 +18,14 @@ SOURCES += \
 
 HEADERS += \
     add.h \
+    change_stu.h \
     mainwindow.h \
     stu_login.h \
     student.h
 
 FORMS += \
     add.ui \
+    change_stu.ui \
     mainwindow.ui \
     stu_login.ui
 

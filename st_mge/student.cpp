@@ -3,8 +3,9 @@
 #include <QTextStream>
 #include <QStringList>
 student::student(){};
-student::student(QString studentID){
-    name = id = studentID;
+student::student(QString studentID,QString name="NULL"){
+    this->name = name;
+    id = studentID;
     sex = age = spe = cs = "NULL";
 }
 student::student(QString name, QString studentID, QString gender, QString age, QString major, QString className)

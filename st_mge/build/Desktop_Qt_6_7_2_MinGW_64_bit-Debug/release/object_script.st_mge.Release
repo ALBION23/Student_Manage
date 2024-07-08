@@ -1,0 +1,11 @@
+release/add.o
+release/change_stu.o
+release/main.o
+release/mainwindow.o
+release/stu_login.o
+release/student.o
+release/qrc_res.o
+release/moc_add.o
+release/moc_change_stu.o
+release/moc_mainwindow.o
+release/moc_stu_login.o

@@ -17,9 +17,9 @@ void stu_login::on_btlogin_clicked()
 {
     QString name =ui->username->text();
     QString password =ui->passwd->text();
+
     if (password.length()<6){
         QMessageBox::about(this,"错误","密码少于6位");
-
     }
     else{
         if (name=="admin"&&password=="123456")

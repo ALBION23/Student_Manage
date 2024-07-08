@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "add.h"
 #include "student.h"
-//#include <map>
+#include "change_stu.h"
 #include <QString>
 #include <QStringList>
 #include <QDebug>
@@ -23,11 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     m_dlgLogin.show();
-
- //   QPalette p;
- //   QPixmap pix("/picture/114287760_p0.png");
- //   p.setBrush(QPalette::Window,QBrush(pix));
- //   this->setPalette(p);
 
     auto f = [&](){
         this->show();
@@ -51,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
                 continue;
             else{
                 hash[number] = ls.size()+1;
-                ls.append(student (number));
+                ls.append(student(number,QString::number(i)));
                 i++;
             }
         }
@@ -68,11 +63,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     View_Head_Labels << "姓名"<<"学号"<<"性别"<<"年龄"<<"专业"<<"班级";
+    //不可修改
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //列宽自动拉伸
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    // ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    //垂直表头居中
     ui->tableView->verticalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    //锁定行高为40像素
+    ui->tableView->verticalHeader()->setDefaultSectionSize(40);
+    //显示滚动条
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //点击表头排序
     ui->tableView->setSortingEnabled(true);
+    //选择整行
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ls_flash();
     on_flash_clicked();
@@ -82,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete modle;
 }
 
 void MainWindow::on_smExit_clicked()
@@ -119,6 +125,7 @@ void MainWindow::on_search_clicked()
         if(!pos){
             QMessageBox::about(this,"错误","搜索结果为空");
         }
+        ui->searchEdit->clear();
     }
 
 }
@@ -155,18 +162,37 @@ void MainWindow::on_deleteStudent_clicked()
 
 void MainWindow::on_changemessage_clicked()
 {
-    // 获取选中的模型索引
-    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
-    QModelIndexList selectedRows = selectionModel->selectedRows();
-
-    if (selectedRows.isEmpty()) {
-        QMessageBox::about(this,"错误","请选中相应行");
-        return;
-    }
-
-    int rowToDelete = selectedRows.first().row();
-
-
+    cg_st.show();
+    auto f = [&](){
+        QString id = cg_st.stu_id();
+        QStringList step = cg_st.list();
+        if(hash[id]){
+            int pos = hash[id] -1 ;
+            QString name;
+            QString sex;
+            QString age;
+            QString pro;
+            QString class_2;
+            name = step.at(0) == ""?ls[pos].list().at(0):step.at(0);
+            sex = step.at(2) == ""?ls[pos].list().at(2):step.at(2);
+            age = step.at(3) == ""?ls[pos].list().at(3):step.at(3);
+            pro = step.at(4) == ""?ls[pos].list().at(4):step.at(4);
+            class_2 = step.at(5) == ""?ls[pos].list().at(5):step.at(5);
+            qDebug() << name << sex << age << pro << class_2 ;
+            student temp(name,id,sex,age,pro,class_2);
+            stack_stu.push({ls[pos],{4,pos}});
+            ls[pos] = temp;
+            cg_st.hide();
+            cg_st._clear();
+            Save_Data();
+            on_flash_clicked();
+        }
+        else{
+            QMessageBox::about(&cg_st,"错误","找不到该学生");
+            return ;
+        }
+    };
+    connect(&cg_st,&change_stu::change_over,this,f);
 
 }
 
@@ -195,6 +221,9 @@ void MainWindow::on_returnsituation_clicked()
                 ls.pop_back();
             }
             break;
+        case 4:
+            ls[pos] = temp;
+            break;
         }
 
         Save_Data();
@@ -209,8 +238,10 @@ void MainWindow::on_flash_clicked()
     modle->clear();
     modle->setHorizontalHeaderLabels(View_Head_Labels);
     for(int i = 0;i<ls.size();i++){
-        for(int j = 0;j<6;j++)
+        for(int j = 0;j<6;j++){
             modle->setItem(i,j,new QStandardItem(ls[i].list().at(j)));
+            modle->item(i, j)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 }
 
@@ -246,8 +277,7 @@ void MainWindow::ls_flash(){
     QTextStream in(&file);
     // qDebug()<<"file open success!";
     int pos = 0;
-    while (!in.atEnd())
-    {
+    while (!in.atEnd()){
         student step;
         in >> step;
         QString temp = step.list().at(1);
