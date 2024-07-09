@@ -22,6 +22,7 @@ void stu_login::on_btlogin_clicked()
         QMessageBox::about(this,"错误","密码少于6位");
     }
     else{
+
         if (name=="admin"&&password=="123456")
         {
             qDebug()<<"登陆成功";

@@ -58,7 +58,7 @@ public:
         id->setMaxLength(12);
         label = new QLabel(widget_2);
         label->setObjectName("label");
-        label->setGeometry(QRect(50, 0, 81, 71));
+        label->setGeometry(QRect(0, 0, 81, 71));
         QFont font;
         font.setPointSize(24);
         font.setBold(false);
@@ -150,7 +150,7 @@ public:
 
         label_7 = new QLabel(change_stu);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(270, 70, 271, 71));
+        label_7->setGeometry(QRect(260, 70, 271, 71));
         QFont font2;
         font2.setPointSize(26);
         label_7->setFont(font2);

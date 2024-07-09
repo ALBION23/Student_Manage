@@ -17,7 +17,8 @@ void change_stu::on_pushButton_clicked()
 {
     id = ui->id->text();
     message<<ui->name->text() << ui->id->text();
-    qDebug() <<ui->name->text();
+    // qDebug() <<ui->name->text();
+
     if(ui->boy->isChecked())
     {
         message<<"男";
@@ -27,9 +28,12 @@ void change_stu::on_pushButton_clicked()
     }
     else
         message<<"";
+
     message << ui->age->text() << ui->pro->text() << ui->class_2->text();
+
     emit change_over();
 }
+
 void change_stu::_clear(){
     ui->id->clear();
     ui->pro->clear();

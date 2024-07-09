@@ -15,13 +15,13 @@ public:
     explicit stu_login(QWidget *parent = nullptr);
     ~stu_login();
 private slots:
-
     void on_btlogin_clicked();
 
     void on_btexit_clicked();
 
 signals:
     void sendLoginSuccess();
+
 private:
     Ui::stu_login *ui;
 };

@@ -35,6 +35,7 @@ QTextStream& operator<<(QTextStream& out, const student& st){
     return out;
 }
 QTextStream& operator>>(QTextStream& in, student& st) {
+
     QString line = in.readLine();
     QStringList tokens = line.split(' ', Qt::SkipEmptyParts);
 

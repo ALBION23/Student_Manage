@@ -14,14 +14,18 @@ class change_stu : public QDialog
 public:
     explicit change_stu(QWidget *parent = nullptr);
     ~change_stu();
+
     QStringList list();
+
     QString stu_id();
+
     void _clear();
 signals:
     void change_over();
 
 private slots:
     void on_pushButton_clicked();
+
     void on_cancel_clicked();
 
 private:

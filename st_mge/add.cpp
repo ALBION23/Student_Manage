@@ -28,13 +28,16 @@ void add::on_pushButton_clicked()
     QString age;
     QString pro;
     QString class_2;
+
     name =ui->name->text();
     number =ui->number->text();
     age =ui->age->text();
     sex = ui->boy->isChecked()? "男":"女";
     pro =ui->pro->text();
     class_2= ui->class_2->text();
+
     student st(name,number,sex,age,pro,class_2);
+
     if(st.check()){
         addDATA(st);
         this->hide();
@@ -48,16 +51,19 @@ void add::on_pushButton_clicked()
 
 void add::addDATA(student& st)
 {
-    QFile file ("a.txt");
+    QFile file ("student.txt");
+
     if (!file.open(QIODevice::Append|QIODevice::Text))   //文件打开不成功
     {
         qDebug()<<"file open failure!";
         return ;
     }
+
     QTextStream out(&file);
     // qDebug()<<"file open success!";
     out<<st;
-    file.close(); 
+
+    file.close();
 }
 
 void add::on_pushButton_2_clicked()

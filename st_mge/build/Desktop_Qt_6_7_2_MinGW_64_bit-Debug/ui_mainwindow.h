@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -21,6 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
@@ -37,7 +39,8 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *smExit;
-    QWidget *widget_2;
+    QTabWidget *tabWidget_2;
+    QWidget *tab1;
     QLineEdit *searchEdit;
     QPushButton *addStudent;
     QPushButton *search;
@@ -45,6 +48,13 @@ public:
     QPushButton *returnsituation;
     QPushButton *flash;
     QPushButton *changemessage;
+    QWidget *tab2;
+    QLineEdit *searchEdit_2;
+    QPushButton *search_2;
+    QComboBox *sexSearch;
+    QComboBox *ageSearch;
+    QComboBox *majorSearch;
+    QComboBox *classSearch;
     QTableView *tableView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -108,11 +118,14 @@ public:
 
         gridLayout->addWidget(smExit, 0, 5, 1, 1);
 
-        widget_2 = new QWidget(centralwidget);
-        widget_2->setObjectName("widget_2");
-        widget_2->setGeometry(QRect(10, 70, 1081, 611));
-        widget_2->setStyleSheet(QString::fromUtf8(""));
-        searchEdit = new QLineEdit(widget_2);
+        tabWidget_2 = new QTabWidget(centralwidget);
+        tabWidget_2->setObjectName("tabWidget_2");
+        tabWidget_2->setGeometry(QRect(0, 70, 1091, 81));
+        tabWidget_2->setStyleSheet(QString::fromUtf8("QWidget#centralwidget(background-color: #001871;);"));
+        tab1 = new QWidget();
+        tab1->setObjectName("tab1");
+        tab1->setStyleSheet(QString::fromUtf8("QWidget#centralwidget(background-color: #001871;);"));
+        searchEdit = new QLineEdit(tab1);
         searchEdit->setObjectName("searchEdit");
         searchEdit->setGeometry(QRect(50, 10, 251, 41));
         QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
@@ -121,7 +134,7 @@ public:
         sizePolicy.setHeightForWidth(searchEdit->sizePolicy().hasHeightForWidth());
         searchEdit->setSizePolicy(sizePolicy);
         searchEdit->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 109, 109);"));
-        addStudent = new QPushButton(widget_2);
+        addStudent = new QPushButton(tab1);
         addStudent->setObjectName("addStudent");
         addStudent->setGeometry(QRect(450, 10, 91, 41));
         sizePolicy.setHeightForWidth(addStudent->sizePolicy().hasHeightForWidth());
@@ -131,42 +144,75 @@ public:
         font3.setPointSize(16);
         addStudent->setFont(font3);
         addStudent->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        search = new QPushButton(widget_2);
+        search = new QPushButton(tab1);
         search->setObjectName("search");
         search->setGeometry(QRect(320, 10, 91, 41));
         sizePolicy.setHeightForWidth(search->sizePolicy().hasHeightForWidth());
         search->setSizePolicy(sizePolicy);
         search->setFont(font3);
         search->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        deleteStudent = new QPushButton(widget_2);
+        deleteStudent = new QPushButton(tab1);
         deleteStudent->setObjectName("deleteStudent");
         deleteStudent->setGeometry(QRect(580, 10, 91, 41));
         sizePolicy.setHeightForWidth(deleteStudent->sizePolicy().hasHeightForWidth());
         deleteStudent->setSizePolicy(sizePolicy);
         deleteStudent->setFont(font3);
         deleteStudent->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        returnsituation = new QPushButton(widget_2);
+        returnsituation = new QPushButton(tab1);
         returnsituation->setObjectName("returnsituation");
         returnsituation->setGeometry(QRect(840, 10, 91, 41));
         sizePolicy.setHeightForWidth(returnsituation->sizePolicy().hasHeightForWidth());
         returnsituation->setSizePolicy(sizePolicy);
         returnsituation->setFont(font3);
         returnsituation->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        flash = new QPushButton(widget_2);
+        flash = new QPushButton(tab1);
         flash->setObjectName("flash");
         flash->setGeometry(QRect(970, 10, 91, 41));
         sizePolicy.setHeightForWidth(flash->sizePolicy().hasHeightForWidth());
         flash->setSizePolicy(sizePolicy);
         flash->setFont(font3);
         flash->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        changemessage = new QPushButton(widget_2);
+        changemessage = new QPushButton(tab1);
         changemessage->setObjectName("changemessage");
         changemessage->setGeometry(QRect(710, 10, 91, 41));
         changemessage->setFont(font3);
         changemessage->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
-        tableView = new QTableView(widget_2);
+        tabWidget_2->addTab(tab1, QString());
+        tab2 = new QWidget();
+        tab2->setObjectName("tab2");
+        tab2->setStyleSheet(QString::fromUtf8("QWidget#centralwidget(background-color: #001871;);"));
+        searchEdit_2 = new QLineEdit(tab2);
+        searchEdit_2->setObjectName("searchEdit_2");
+        searchEdit_2->setGeometry(QRect(50, 10, 251, 41));
+        sizePolicy.setHeightForWidth(searchEdit_2->sizePolicy().hasHeightForWidth());
+        searchEdit_2->setSizePolicy(sizePolicy);
+        searchEdit_2->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 109, 109);"));
+        search_2 = new QPushButton(tab2);
+        search_2->setObjectName("search_2");
+        search_2->setGeometry(QRect(970, 10, 91, 41));
+        sizePolicy.setHeightForWidth(search_2->sizePolicy().hasHeightForWidth());
+        search_2->setSizePolicy(sizePolicy);
+        search_2->setFont(font3);
+        search_2->setStyleSheet(QString::fromUtf8("background-color: rgb(79, 79, 79);"));
+        sexSearch = new QComboBox(tab2);
+        sexSearch->addItem(QString());
+        sexSearch->addItem(QString());
+        sexSearch->addItem(QString());
+        sexSearch->setObjectName("sexSearch");
+        sexSearch->setGeometry(QRect(350, 10, 71, 41));
+        ageSearch = new QComboBox(tab2);
+        ageSearch->setObjectName("ageSearch");
+        ageSearch->setGeometry(QRect(460, 10, 71, 41));
+        majorSearch = new QComboBox(tab2);
+        majorSearch->setObjectName("majorSearch");
+        majorSearch->setGeometry(QRect(580, 10, 201, 41));
+        classSearch = new QComboBox(tab2);
+        classSearch->setObjectName("classSearch");
+        classSearch->setGeometry(QRect(820, 10, 111, 41));
+        tabWidget_2->addTab(tab2, QString());
+        tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(10, 60, 1061, 551));
+        tableView->setGeometry(QRect(20, 160, 1061, 521));
         tableView->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "background-color: rgb(117, 117, 117);"));
         tableView->horizontalHeader()->setMinimumSectionSize(20);
@@ -181,6 +227,9 @@ public:
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
+
+        tabWidget_2->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -197,6 +246,13 @@ public:
         returnsituation->setText(QCoreApplication::translate("MainWindow", "\350\277\224\345\233\236", nullptr));
         flash->setText(QCoreApplication::translate("MainWindow", "\345\210\267\346\226\260", nullptr));
         changemessage->setText(QCoreApplication::translate("MainWindow", "\344\277\256\346\224\271", nullptr));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(tab1), QCoreApplication::translate("MainWindow", "\346\220\234\347\264\242", nullptr));
+        search_2->setText(QCoreApplication::translate("MainWindow", "\346\220\234\347\264\242", nullptr));
+        sexSearch->setItemText(0, QCoreApplication::translate("MainWindow", "\347\224\267", nullptr));
+        sexSearch->setItemText(1, QCoreApplication::translate("MainWindow", "\345\245\263", nullptr));
+        sexSearch->setItemText(2, QCoreApplication::translate("MainWindow", "NULL", nullptr));
+
+        tabWidget_2->setTabText(tabWidget_2->indexOf(tab2), QCoreApplication::translate("MainWindow", "\351\253\230\347\272\247\346\220\234\347\264\242", nullptr));
     } // retranslateUi
 
 };

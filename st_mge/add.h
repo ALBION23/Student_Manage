@@ -15,9 +15,12 @@ public:
     ~add();
 signals:
     void add_over();
+
     void add_hundred();
+
 private slots:
     void on_pushButton_clicked();
+
     void addDATA(student& st);
 
     void on_pushButton_2_clicked();

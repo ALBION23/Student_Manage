@@ -33,8 +33,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
     void Save_Data();
+
     void ls_flash();
+
+    void hash_flash();
 private slots:
     void on_smExit_clicked();
 
@@ -50,6 +54,8 @@ private slots:
 
     void on_changemessage_clicked();
 
+    void on_search_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     stu_login m_dlgLogin;
@@ -58,6 +64,9 @@ private:
     QList<student> ls;
     QStack<PSI> stack_stu;
     QHash<QString,int> hash;
+    QHash<QString,int> age_hash;
+    QHash<QString,int> major_hash;
+    QHash<QString,int> class_hash;
     QStandardItemModel *modle;
 
 };
