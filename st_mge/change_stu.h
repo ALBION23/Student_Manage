@@ -20,8 +20,11 @@ public:
     QString stu_id();
 
     void _clear();
+
+    void hideChangeLevel(int usrLevel);
+
 signals:
-    void change_over();
+    void change_over(const QString& id,const QStringList& step);
 
 private slots:
     void on_pushButton_clicked();

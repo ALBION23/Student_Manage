@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png</normaloff>:/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png</iconset>
+    <normaloff>:/picture/icon.png</normaloff>:/picture/icon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="4" column="0" colspan="2">
@@ -81,7 +81,7 @@
        </font>
       </property>
       <property name="maxLength">
-       <number>8</number>
+       <number>12</number>
       </property>
       <property name="placeholderText">
        <string>请输入用户名</string>
@@ -121,7 +121,7 @@
        </font>
       </property>
       <property name="maxLength">
-       <number>8</number>
+       <number>10</number>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>

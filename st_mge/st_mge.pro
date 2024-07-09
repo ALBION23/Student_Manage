@@ -11,15 +11,19 @@ CONFIG += c++11
 SOURCES += \
     add.cpp \
     change_stu.cpp \
+    comstudent.cpp \
     main.cpp \
     mainwindow.cpp \
+    monitor.cpp \
     stu_login.cpp \
     student.cpp
 
 HEADERS += \
     add.h \
     change_stu.h \
+    comstudent.h \
     mainwindow.h \
+    monitor.h \
     stu_login.h \
     student.h
 

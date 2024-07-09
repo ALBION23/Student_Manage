@@ -3,6 +3,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QStringList>
+
 class student
 {
 private:
@@ -16,13 +17,14 @@ private:
 public:
     student();
 
-    student(QString studnetID,QString name);
+    student(const QString& studentID,const QString& name);
 
-    student(QString name, QString studentID, QString gender, QString age, QString major, QString className);
+    student(const QString& name,const  QString& studentID,const QString& gender,
+            const QString& age,const QString& major,const QString& className);
 
     student(const student& st);
 
-    student operator= (const student & st);
+    student& operator= (const student & st);
 
     friend QTextStream& operator<<(QTextStream& out, const student& st);
 
@@ -32,6 +34,12 @@ public:
 
     QStringList list();
 
+    void change(const QString name,const QString gender,
+                const QString age,const QString major,const QString className);
+
+    virtual int getLevel() const = 0;
+
+    virtual ~student() {};
 };
 
 #endif // STUDENT_H

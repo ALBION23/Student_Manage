@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/114287760_p0.png</file>
-        <file>build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/icon.png</file>
+        <file>picture/114287760_p0.png</file>
+        <file>picture/icon.png</file>
     </qresource>
 </RCC>

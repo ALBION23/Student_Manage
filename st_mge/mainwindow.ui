@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/114287760_p0.png</normaloff>:/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/picture/114287760_p0.png</iconset>
+    <normaloff>:/picture/icon.png</normaloff>:/picture/icon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -141,7 +141,7 @@ background-color: rgb(79, 79, 79);</string>
     <property name="currentIndex">
      <number>1</number>
     </property>
-    <widget class="QWidget" name="tab1" native="true">
+    <widget class="QWidget" name="tab1">
      <property name="styleSheet">
       <string notr="true">QWidget#centralwidget(background-color: #001871;);</string>
      </property>
@@ -251,7 +251,7 @@ background-color: rgb(79, 79, 79);</string>
        <string>删除</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="returnsituation">
+     <widget class="QPushButton" name="returnSituation">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -307,7 +307,7 @@ background-color: rgb(79, 79, 79);</string>
        <string>刷新</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="changemessage">
+     <widget class="QPushButton" name="changeMessage">
       <property name="geometry">
        <rect>
         <x>710</x>
@@ -340,7 +340,7 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QLineEdit" name="searchEdit_2">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>20</x>
         <y>10</y>
         <width>251</width>
         <height>41</height>
@@ -359,7 +359,7 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QPushButton" name="search_2">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>990</x>
         <y>10</y>
         <width>91</width>
         <height>41</height>
@@ -387,7 +387,7 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QComboBox" name="sexSearch">
       <property name="geometry">
        <rect>
-        <x>350</x>
+        <x>290</x>
         <y>10</y>
         <width>71</width>
         <height>41</height>
@@ -412,7 +412,7 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QComboBox" name="ageSearch">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>390</x>
         <y>10</y>
         <width>71</width>
         <height>41</height>
@@ -422,7 +422,7 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QComboBox" name="majorSearch">
       <property name="geometry">
        <rect>
-        <x>580</x>
+        <x>490</x>
         <y>10</y>
         <width>201</width>
         <height>41</height>
@@ -432,12 +432,37 @@ background-color: rgb(79, 79, 79);</string>
      <widget class="QComboBox" name="classSearch">
       <property name="geometry">
        <rect>
-        <x>820</x>
+        <x>720</x>
         <y>10</y>
         <width>111</width>
         <height>41</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QComboBox" name="levelSearch">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>10</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>无</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>普通学生</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>班长</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>
@@ -468,7 +493,7 @@ background-color: rgb(117, 117, 117);</string>
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

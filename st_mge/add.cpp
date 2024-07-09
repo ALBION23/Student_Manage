@@ -1,6 +1,8 @@
 #include "add.h"
 #include "ui_add.h"
 #include "student.h"
+#include "monitor.h"
+#include "comstudent.h"
 #include <QString>
 #include <QDebug>
 #include <QFile>
@@ -36,16 +38,32 @@ void add::on_pushButton_clicked()
     pro =ui->pro->text();
     class_2= ui->class_2->text();
 
-    student st(name,number,sex,age,pro,class_2);
-
-    if(st.check()){
-        addDATA(st);
-        this->hide();
-        emit add_over();
+    if(ui->comboBox->currentIndex()){
+        monitor st(name,number,sex,age,pro,class_2);
+        if(st.check()){
+            addDATA(st);
+            this->hide();
+            emit add_over();
+        }
+        else{
+            QMessageBox::about(this,"错误","输入格式错误");
+        }
     }
     else{
-        QMessageBox::about(this,"错误","输入格式错误");
+
+        comStudent st(name,number,sex,age,pro,class_2);
+
+        if(st.check()){
+            addDATA(st);
+            this->hide();
+            emit add_over();
+        }
+        else{
+            QMessageBox::about(this,"错误","输入格式错误");
+        }
+
     }
+
 
 }
 
@@ -61,7 +79,7 @@ void add::addDATA(student& st)
 
     QTextStream out(&file);
     // qDebug()<<"file open success!";
-    out<<st;
+    out<<st.getLevel()<<" "<<st;
 
     file.close();
 }

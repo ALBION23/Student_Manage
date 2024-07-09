@@ -20,7 +20,7 @@ private slots:
     void on_btexit_clicked();
 
 signals:
-    void sendLoginSuccess();
+    void sendLoginSuccess(const QString& usrname,const QString& passwd);
 
 private:
     Ui::stu_login *ui;
