@@ -28,6 +28,8 @@ void change_stu::hideChangeLevel(int usrLevel){
 
 void change_stu::on_pushButton_clicked()
 {
+    QString id;
+    QStringList message;
     id = ui->id->text();
 
     if(id.isEmpty()){
@@ -57,7 +59,7 @@ void change_stu::on_pushButton_clicked()
         }
     }
     message << ui->age->text() << ui->pro->text() << ui->class_2->text()<<ui->comboBox->currentText();
-
+    qDebug() << ui->comboBox->currentText();
     emit change_over(id,message);
 }
 
@@ -75,9 +77,3 @@ void change_stu::on_cancel_clicked()
     this->hide();
 }
 
-QStringList change_stu::list(){
-    return message;
-}
-QString change_stu::stu_id(){
-    return id;
-}

@@ -46,6 +46,9 @@ QTextStream& operator>>(QTextStream& in, student& st)
     QString line = in.readLine();
     QStringList tokens = line.split(' ', Qt::SkipEmptyParts);
 
+    if(tokens.at(0) == "")
+        tokens.removeAt(0);
+
     if (!tokens.isEmpty())
         st.name = tokens.at(0);
     if (tokens.size() > 1)

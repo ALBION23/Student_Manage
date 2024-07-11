@@ -15,10 +15,6 @@ public:
     explicit change_stu(QWidget *parent = nullptr);
     ~change_stu();
 
-    QStringList list();
-
-    QString stu_id();
-
     void _clear();
 
     void hideChangeLevel(int usrLevel);
@@ -33,8 +29,6 @@ private slots:
 
 private:
     Ui::change_stu *ui;
-    QString id;
-    QStringList message;
 };
 
 #endif // CHANGE_STU_H

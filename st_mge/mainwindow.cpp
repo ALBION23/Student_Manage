@@ -16,6 +16,7 @@
 #include <QStandardItemModel>
 #include <QRandomGenerator>
 #include <QTableView>
+#include <queue>
 
 QStringList View_Head_Labels ;
 
@@ -112,6 +113,11 @@ void MainWindow::check_login(const QString& usrname,const QString& passwd)
 
 void MainWindow::on_smExit_clicked()
 {
+    while(!stack_stu.empty()){
+        delete stack_stu.top().first;
+        stack_stu.pop();
+    }
+
     m_dlgLogin.show();
     this->hide();
 }
@@ -163,8 +169,9 @@ void MainWindow::on_search_clicked()
         QMessageBox::about(this,"错误","请在搜索框内输入内容");
     }
     else{
-        modle -> clear();
-        modle -> setHorizontalHeaderLabels(View_Head_Labels);
+        modle->clear();
+        modle->setHorizontalHeaderLabels(View_Head_Labels);
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
         int pos = 0;
         for(int i = 0;i<ls.size();i++){
@@ -176,12 +183,12 @@ void MainWindow::on_search_clicked()
                 }
 
                 if(ls[i]->getLevel()){
-                    modle->setItem(i,6,new QStandardItem("班长"));
+                    modle->setItem(pos,6,new QStandardItem("班长"));
                 }
                 else{
-                    modle->setItem(i,6,new QStandardItem("普通学生"));
+                    modle->setItem(pos,6,new QStandardItem("普通学生"));
                 }
-                modle->item(i, 6)->setTextAlignment(Qt::AlignCenter);
+                modle->item(pos, 6)->setTextAlignment(Qt::AlignCenter);
 
                 pos++;
             }
@@ -278,6 +285,8 @@ void MainWindow::on_deleteStudent_clicked()
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
     QModelIndexList selectedRows = selectionModel->selectedRows();
 
+    std::priority_queue<int> heap;
+
     if (selectedRows.isEmpty()) {
         QMessageBox::about(this,"错误","请选中相应行");
         return;
@@ -294,15 +303,21 @@ void MainWindow::on_deleteStudent_clicked()
 
         int pos = hash[rowData]-1;
         // qDebug() << pos;
+        heap.push(pos);
         stack_stu.push({ls[pos],{2,pos}});
 
-        ls.takeAt(pos);
         hash[rowData] = 0;
         modle->removeRow(row);
-
-        Save_Data();
-        hash_flash();
     }
+
+    while(heap.size()){
+        ls.takeAt(heap.top());
+        heap.pop();
+    }
+
+    Save_Data();
+
+    hash_flash();
 }
 
 
@@ -337,7 +352,8 @@ void MainWindow::change_message(const QString& id,const QStringList& step)
         major = step.at(4) == ""?ls[pos]->list().at(4):step.at(4);
         _class = step.at(5) == ""?ls[pos]->list().at(5):step.at(5);
         level = step.at(6) == "普通学生"? 0:1;
-        // qDebug() << name << sex << age << major << _class << level << step.at(6);
+        qDebug()<<step.at(6);
+        qDebug()<<level;
         /*            if(usrLevel <= 1)
                 level = ls[pos]->getLevel();
 */
@@ -375,7 +391,7 @@ void MainWindow::change_message(const QString& id,const QStringList& step)
             delete ls[pos];
             ls[pos] = comPtr;
         }
-
+        qDebug() << ls[pos]->getLevel();
         cg_st.hide();
         cg_st._clear();
 
